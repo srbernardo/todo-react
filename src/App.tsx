@@ -1,12 +1,16 @@
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Task from "./pages/Task";
 import "./App.css";
 
 function App() {
   return (
-    <>
-      <div>
-        <h1>Hello, World!</h1>
-      </div>
-    </>
+    <div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/task" element={<Task />} />
+      </Routes>
+    </div>
   );
 }
 
