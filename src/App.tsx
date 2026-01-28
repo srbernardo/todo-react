@@ -5,7 +5,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div>
+    <div className="hero">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/task" element={<Task />} />

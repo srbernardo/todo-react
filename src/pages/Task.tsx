@@ -1,7 +1,7 @@
 function Task() {
   return (
     <>
-      <h1>Task</h1>
+      <h1 className="text-3xl font-bold">Task</h1>
     </>
   );
 }
