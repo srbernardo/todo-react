@@ -1,1 +1,40 @@
 @import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
+  list-style: none;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+body {
+  color: white;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  background: #f8f8ff;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background: #50329b;
+  border-radius: 10px;
+}
+
+.hero {
+  width: 100%;
+  height: 280px;
+  top: 0;
+  left: 0;
+  background: linear-gradient(300deg, deepskyblue, darkviolet);
+}
