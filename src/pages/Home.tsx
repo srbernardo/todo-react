@@ -1,23 +1,23 @@
-import { CiCirclePlus } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 
+import { useState } from "react";
+
+import AddTask from "../components/AddTask";
+
 function Home() {
+  const [tasksValues, setTasksValues] = useState<string[]>([]);
 
-
+  const saveTask = (taskTitle: string) => {
+    setTasksValues([...tasksValues, taskTitle]);
+  }
 
   return (
     <>
       <div className="flex justify-center">
         <div className="flex flex-col mt-16 w-[500px]">
           <h1 className="text-5xl font-bold subpixel-antialiased tracking-wider mb-6">TODO</h1>
-          <div className="flex space-x-2 items-center rounded-lg px-4 bg-white mb-4 shadow-lg">
-            <CiCirclePlus size={26} color="gray" />
-            <input
-                className="px-1 py-3 text-lg text-gray-500"
-                type="text"
-                placeholder="Add a new task..."
-              />        
-          </div>
+          <AddTask onSaveTask={saveTask}/>
+          
           <ul className="flex flex-col rounded-lg bg-white shadow-lg shadow-indigo-500/25">
             <div className="flex px-2 py-2 justify-between text-gray-400 border-b border-b-gray-200 mx-2">
               <div>items</div>
