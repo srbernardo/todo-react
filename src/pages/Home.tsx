@@ -3,6 +3,7 @@ import { v4 } from "uuid";
 
 import AddTask from "../components/AddTask";
 import TaskList from "../components/TaskList";
+import type { TaskProps } from "../types";
 
 function Home() {
   let tasksMock = [
@@ -16,7 +17,7 @@ function Home() {
     setTasks([...tasks, {id: v4(), title: taskTitle, completed: false}]);
   }
 
-  const updateTask = (task: {id: string, title: string, completed: boolean}) => {
+  const updateTask = (task: TaskProps) => {
     setTasks(tasks.map((t) => t.id === task.id ? task : t));
   }
 
