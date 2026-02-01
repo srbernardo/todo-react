@@ -1,7 +1,11 @@
 import { CiCirclePlus } from "react-icons/ci";
 import { useState } from "react";
 
-function AddTask({onSaveTask}: {onSaveTask: (taskTitle: string) => void}) {
+interface AddTaskProps {
+  onSaveTask: (taskTitle: string) => void
+}
+
+function AddTask({onSaveTask}: AddTaskProps) {
   const [taskTitle, setTaskTitle] = useState('')
 
   const handleSaveTask = () => {
