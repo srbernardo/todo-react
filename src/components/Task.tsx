@@ -1,8 +1,19 @@
 import { IoMdClose } from "react-icons/io";
+import type { TaskProps } from "../types";
 
-function Task({ task, onTaskChange, onTaskRemove, onTaskComplete }: { task: {id: string, title: string, completed: boolean}, onTaskChange: (task: {id: string, title: string, completed: boolean}) => void, onTaskRemove: (taskId: string) => void, onTaskComplete: (taskId: string) => void }) {  
-  
-  
+interface TaskComponentProps {
+  task: TaskProps;
+  onTaskChange: (task: TaskProps) => void;
+  onTaskRemove: (taskId: string) => void;
+  onTaskComplete: (taskId: string) => void;
+}
+
+function Task({ 
+  task, 
+  onTaskChange, 
+  onTaskRemove, 
+  onTaskComplete 
+}: TaskComponentProps) {
   
   return (
     <>
