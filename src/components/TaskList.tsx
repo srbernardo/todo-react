@@ -1,6 +1,6 @@
 import Task from "./Task";
 
-function TaskList({tasks}: {tasks: {id: string, title: string, completed: boolean}[]}) {
+function TaskList({tasks, onTaskChange}: {tasks: {id: string, title: string, completed: boolean}[], onTaskChange: (task: {id: string, title: string, completed: boolean}) => void}) {
 
   return (
     <>
@@ -11,7 +11,11 @@ function TaskList({tasks}: {tasks: {id: string, title: string, completed: boolea
           <div>clear completed</div>
         </div>
         {tasks.map((task) => (
-          <Task task={task}/>
+          <Task 
+            key={task.id}
+            task={task}
+            onTaskChange={onTaskChange}
+          />
         ))}
       </ul>
     </>
