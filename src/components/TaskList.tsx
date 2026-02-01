@@ -1,11 +1,21 @@
+import type { TaskProps } from "../types";
 import Task from "./Task";
 
-function TaskList({tasks, onTaskChange, onTaskRemove, onClearCompleted, onTaskComplete}: {
-  tasks: {id: string, title: string, completed: boolean}[],
-  onTaskChange: (task: {id: string, title: string, completed: boolean}) => void,
+interface TaskListProps {
+  tasks: TaskProps[],
+  onTaskChange: (task: TaskProps) => void,
   onTaskRemove: (taskId: string) => void,
   onClearCompleted: () => void,
-  onTaskComplete: (taskId: string) => void}) {
+  onTaskComplete: (taskId: string) => void
+}
+
+function TaskList({
+  tasks, 
+  onTaskChange, 
+  onTaskRemove, 
+  onClearCompleted, 
+  onTaskComplete
+}: TaskListProps) {
 
   return (
     <>
