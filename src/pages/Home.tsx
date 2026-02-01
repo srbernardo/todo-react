@@ -35,7 +35,7 @@ function Home() {
   return (
     <>
       <div className="flex justify-center">
-        <div className="flex flex-col mt-16 w-[500px]">
+        <div className="flex flex-col mt-16 w-[450px]">
           <h1 className="text-5xl font-bold subpixel-antialiased tracking-wider mb-6">TODO</h1>
           <AddTask onSaveTask={saveTask}/>
           <TaskList 
