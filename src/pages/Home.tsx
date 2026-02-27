@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 } from "uuid";
 
 import AddTask from "../components/AddTask";
@@ -11,26 +11,50 @@ function Home() {
     {id: v4(), title: 'Throw the trash away', completed: false},
   ];
 
-  const [tasks, setTasks] = useState(tasksMock);
+  const [allTasks, setAllTasks] = useState(tasksMock);
+  const [tasks, setTasks] = useState(allTasks);
+  const [filter, setFilter] = useState<'all' | 'completed' | 'pending'>('all');
+
+  useEffect(() => {
+    if (filter === 'all') {
+      setTasks(allTasks);
+    } else if (filter === 'completed') {
+      setTasks(allTasks.filter((t) => t.completed));
+    } else if (filter === 'pending') {
+      setTasks(allTasks.filter((t) => !t.completed));
+    }
+  }, [filter, allTasks]);
 
   const saveTask = (taskTitle: string) => {
-    setTasks([...tasks, {id: v4(), title: taskTitle, completed: false}]);
+    setAllTasks([...allTasks, {id: v4(), title: taskTitle, completed: false}]);
   }
 
   const updateTask = (task: TaskProps) => {
-    setTasks(tasks.map((t) => t.id === task.id ? task : t));
+    setAllTasks(allTasks.map((t) => t.id === task.id ? task : t));
   }
 
   const completeTask = (taskId: string) => {
-    setTasks(tasks.map((t) => t.id === taskId ? {...t, completed: !t.completed} : t));
+    setAllTasks(allTasks.map((t) => t.id === taskId ? {...t, completed: !t.completed} : t));
   }
   
   const removeTask = (taskId: string) => {
-    setTasks(tasks.filter((t) => t.id !== taskId));
+    setAllTasks(allTasks.filter((t) => t.id !== taskId));
   }
 
   const clearCompleted = () => {
-    setTasks(tasks.filter((t) => !t.completed));
+    setAllTasks(allTasks.filter((t) => !t.completed));
+  }
+
+  const filterTasksCompleted = () => {
+    setFilter('completed');
+  }
+
+  const filterTasksPending = () => {
+    setFilter('pending');
+  }
+
+  const filterTasksAll = () => {
+    setFilter('all');
   }
 
   return (
@@ -45,6 +69,10 @@ function Home() {
             onTaskRemove={removeTask}
             onClearCompleted={clearCompleted}
             onTaskComplete={completeTask}
+            onFilterTasksCompleted={filterTasksCompleted}
+            onFilterTasksPending={filterTasksPending}
+            onFilterTasksAll={filterTasksAll}
+            currentFilter={filter}
           />
         </div>
       </div>
