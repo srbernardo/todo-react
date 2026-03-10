@@ -11,7 +11,9 @@ function Home() {
     {id: v4(), title: 'Throw the trash away', completed: false},
   ];
 
-  const [allTasks, setAllTasks] = useState(tasksMock);
+  const [allTasks, setAllTasks] = useState<TaskProps[]>(
+    JSON.parse(localStorage.getItem('tasks') || JSON.stringify(tasksMock))
+  );
   const [tasks, setTasks] = useState(allTasks);
   const [filter, setFilter] = useState<'all' | 'completed' | 'pending'>('all');
 
@@ -24,6 +26,29 @@ function Home() {
       setTasks(allTasks.filter((t) => !t.completed));
     }
   }, [filter, allTasks]);
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(allTasks));
+  }, [allTasks]);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const response = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=3');
+      const data = await response.json();
+
+      console.log(data);
+
+      const tasks = data.map((task: any) => ({
+        id: v4(),
+        title: task.title.charAt(0).toUpperCase() + task.title.slice(1),
+        completed: task.completed
+      }));
+
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    fetchTasks();
+  }, [])
 
   const saveTask = (taskTitle: string) => {
     setAllTasks([...allTasks, {id: v4(), title: taskTitle, completed: false}]);
