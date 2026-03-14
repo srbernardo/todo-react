@@ -11,9 +11,16 @@ function Home() {
     {id: v4(), title: 'Throw the trash away', completed: false},
   ];
 
-  const [allTasks, setAllTasks] = useState<TaskProps[]>(
-    JSON.parse(localStorage.getItem('tasks') || JSON.stringify(tasksMock))
-  );
+const [allTasks, setAllTasks] = useState<TaskProps[]>(() => {
+  try {
+    const stored = localStorage.getItem('tasks');
+    const parsed = stored ? JSON.parse(stored) : null;
+    
+    return Array.isArray(parsed) ? parsed : tasksMock;
+  } catch {
+    return tasksMock;
+  }
+});
   const [tasks, setTasks] = useState(allTasks);
   const [filter, setFilter] = useState<'all' | 'completed' | 'pending'>('all');
 
