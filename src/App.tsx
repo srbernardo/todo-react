@@ -7,8 +7,8 @@ function App() {
   return (
     <div className="hero">
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/task" element={<Task />} />
+        <Route path="/todo-react" element={<Home />} />
+        <Route path="/todo-react/task" element={<Task />} />
       </Routes>
     </div>
   );
