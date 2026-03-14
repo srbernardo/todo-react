@@ -1,73 +1,41 @@
-# React + TypeScript + Vite
+# 📋 Projeto TODO
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um aplicativo simples de lista de tarefas (TODO) construído com React 🚀, permitindo adicionar , editar , completar  e remover  tarefas. Inclui filtros 🔍 para visualizar tarefas pendentes ⏳, concluídas ✅ ou todas 📋, com persistência local 💾 via localStorage e carregamento inicial 🌐 de dados de uma API externa.
 
-Currently, two official plugins are available:
+### Principais Funções
+- **🗑️ Remover Tarefa**: Exclui uma tarefa da lista.
+- **🔍 Filtrar Tarefas**: Exibe apenas tarefas pendentes ⏳, concluídas ✅ ou todas 📋.
+- **🧹 Limpar Concluídas**: Remove todas as tarefas marcadas como concluídas ✅.
+- **💾 Persistência Local**: Salva as tarefas no localStorage do navegador.
+- **🌐 Carregamento Inicial**: Busca as primeiras 3 tarefas de uma API (JSONPlaceholder) no primeiro carregamento.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Tecnologias Usadas
+- **⚛️ React**: Framework para construção da interface de usuário.
+- **🔷 TypeScript**: Tipagem estática para maior robustez no código.
+- **🎨 Tailwind CSS**: Estilização utilitária para layout responsivo e moderno.
+- **⚡ Vite**: Ferramenta de build e desenvolvimento rápido.
+- **🆔 UUID**: Geração de IDs únicos para tarefas.
+- **📡 Fetch API**: Para consumir dados de uma API externa (JSONPlaceholder).
 
-## React Compiler
+### Deploy
+O projeto foi publicado utilizando **🚀 GitHub Pages**, permitindo acesso online sem necessidade de configurar um servidor. O deploy é automatizado através do pacote `gh-pages`, que publica o conteúdo da pasta `dist` gerada pelo build do Vite.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**🔗 Acesse o projeto online**: [https://srbernardo.github.io/todo-react](https://srbernardo.github.io/todo-react)
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Para realizar o deploy manualmente:
+```bash
+npm run deploy
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Instalação e Execução
+1. Clone o repositório 📥.
+2. Instale as dependências: `npm install` 📦.
+3. Execute o projeto: `npm run dev` ▶️.
+4. Acesse no navegador em `http://localhost:5173` (porta padrão do Vite) 🌐.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Estrutura do Projeto
+- `src/pages/Home.tsx`: Componente principal com lógica de estado e efeitos.
+- `src/components/AddTask.tsx`: Formulário para adicionar tarefas.
+- `src/components/TaskList.tsx`: Lista de tarefas com ações e filtros.
+- `src/types.ts`: Definições de tipos TypeScript.
+- `src/index.css`: Estilos globais.
